@@ -6,7 +6,7 @@ from PIL import Image,ImageTk
 class Bill_App:
     def __init__(self,root):
         self.root= root
-        self.root.geometry("1530x800+0+0")
+        self.root.geometry("1530x780+0+0")
         self.root.title("Billing Software")
         
         #Image1
@@ -30,7 +30,7 @@ class Bill_App:
         lbl_image3= Label(self.root,image= self.photoimg3)
         lbl_image3.place(x=1000,y=0,width=520,height =130)
 
-        lbl_title= Label(self.root,text = "BILLING SOFTWARE USING PYTHON",font = ("times new roman",35,"bold"),bg = "white",fg = "red")
+        lbl_title= Label(self.root,text = "BILLING SOFTWARE USING PYTHON",font = ("times new roman",35,"bold"),bg = "white",fg = "Navy Blue")
         lbl_title.place(x =0,y=130,width =1530, height =45 )
 
         #Main Frame
@@ -100,6 +100,88 @@ class Bill_App:
         scroll_y = Scrollbar(RightLabelFrame, orient= VERTICAL)
         self.textarea = Text(RightLabelFrame, yscrollcommand=scroll_y.set, bg= "white" , fg = "blue", font =("times new Roman",12,"bold") )
         scroll_y.pack(side=RIGHT,fill = Y)
+        scroll_y.config(command = self.textarea.yview)
+        self.textarea.pack(fill=BOTH, expand =1)
+
+        #Bill Counter Label Frame
+        Bottom_Frame= LabelFrame(Main_Frame,text="BILL COUNTER",font =("times new Roman",12,"bold"),bg="white",fg ="red")
+        Bottom_Frame.place(x=0,y=485,width =1520,height =140)
+
+        #Subtotal
+        self.lbl_Subtotal= Label(Bottom_Frame,text= "Sub Total", font = ("times new Roman",12,"bold"),bd = 4, bg = "white")
+        self.lbl_Subtotal.grid(row=0, column=0, stick =W, padx=5, pady=2)
+        self.entry_Subtotal= ttk.Entry(Bottom_Frame,font =("times New Roman",10,"bold"), width =26)
+        self.entry_Subtotal.grid(row =0, column =1, stick = W, padx=5 , pady=2)
+
+        #Adding Taxes
+        self.lbl_tax= Label(Bottom_Frame,text= "Govt. Taxes", font = ("times new Roman",12,"bold"),bd = 4, bg = "white")
+        self.lbl_tax.grid(row=1, column=0, stick =W, padx=5, pady=2)
+        self.entry_tax= ttk.Entry(Bottom_Frame,font =("times New Roman",10,"bold"), width =26)
+        self.entry_tax.grid(row =1, column =1, stick = W, padx=5 , pady=2)
+
+        #Adding Total
+        self.lbl_totalamount= Label(Bottom_Frame,text= "Total", font = ("times new Roman",12,"bold"),bd = 4, bg = "white")
+        self.lbl_totalamount.grid(row=2, column=0, stick =W, padx=5, pady=2)
+        self.entry_totalamount= ttk.Entry(Bottom_Frame,font =("times New Roman",10,"bold"), width =26)
+        self.entry_totalamount.grid(row =2, column =1, stick = W, padx=5 , pady=2)
+
+        #Button Frame
+        Btn_Frame =  Frame(Bottom_Frame,bd = 2, bg = "white")
+        Btn_Frame.place(x=320,y=0)
+       
+        #AddToCartButton
+        self.Btn_AddToCart = Button(Btn_Frame, text= "Add to Cart", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_AddToCart.grid(row =0, column=0)
+
+        self.Btn_GenerateBill = Button(Btn_Frame, text= "Generate Bill", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_GenerateBill.grid(row =0, column=1)
+
+        self.Btn_SaveBill = Button(Btn_Frame, text= "Save Bill", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_SaveBill.grid(row =0, column=2)
+
+        self.Btn_Print = Button(Btn_Frame, text= "Print", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Print.grid(row =0, column=3)
+
+        self.Btn_Clear = Button(Btn_Frame, text= "Clear", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Clear.grid(row =0, column=4)
+
+        self.Btn_Exit = Button(Btn_Frame, text= "Exit", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Exit.grid(row =0, column=5)
+
+        #Search
+        Search_Frame = Frame(Main_Frame,bd =2 ,bg = "white")
+        Search_Frame.place(x =1000,y=10, width = 500, height = 40)
+
+        self.lbl_Bill = Label(Search_Frame,font =("Arial",10,"bold"), text= "BILL NUMBER", bg = "Navy Blue", fg="Grey")
+        self.lbl_Bill.grid(row=0,column=0,sticky=W,padx=1)
+
+        self.txt_BillEntrySearch= ttk.Entry(Search_Frame,font =("Arial",10,"bold"), width=24)
+        self.txt_BillEntrySearch.grid(row=0,column=1,sticky=W,padx=1)
+
+        self.Btn_Search = Button(Search_Frame, text= "SEARCH", font =("Arial",10,"bold"),bg = "Navy Blue", fg = "grey",width=9,cursor = "hand2")
+        self.Btn_Search.grid(row =0, column=2,sticky=W,padx=1, pady=1)
+
+        Middle_Frame = Frame(Main_Frame, bd =10)
+        Middle_Frame.place(x=10,y=150, width = 980, height =325)
+
+        img4 = Image.open("images/4.jpg")
+        img4= img4.resize((490,325),Image.LANCZOS)
+        self.photoimg4 = ImageTk.PhotoImage(img4)
+        lbl_image4= Label(Middle_Frame,image= self.photoimg4)
+        lbl_image4.place(x=0,y=0,width=485,height =325)
+
+        img5 = Image.open("images/5.jpg")
+        img5= img5.resize((490,325),Image.LANCZOS)
+        self.photoimg5 = ImageTk.PhotoImage(img5)
+        lbl_image5= Label(Middle_Frame,image= self.photoimg5)
+        lbl_image5.place(x=500,y=0,width=485,height =325)
+
+
+
+
+
+
+
         
 
 
