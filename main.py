@@ -8,7 +8,58 @@ class Bill_App:
         self.root= root
         self.root.geometry("1530x780+0+0")
         self.root.title("Billing Software")
+
+        #Product Categories List
+        self.Category = ["Select Options", "Clothing", "Lifestyle","Mobiles"]
         
+        self.SubCat_Clothing = ["Pants","T-shirt","Shirt"]
+        self.Pants=["Select Options","LEVIS","AND","ZARA"]
+        self.price_Levis = 5000
+        self.price_AND = 2000
+        self.price_ZARA = 3000
+
+        self.Tshirt=["HM","MANGO","INDYA"]
+        self.price_HM = 1000
+        self.price_MANGO = 3000
+        self.price_INDYA= 750
+
+        self.Shirt=["RAYMONDS","PETER_ENGLAND","RICHLOOK"]
+        self.price_RAYMONDS = 1000
+        self.price_PETER_ENGLAND = 3000
+        self.price_RICHLOOK= 750
+
+        self.SubCat_Lifestyle =["Bath_Soap","Face_Cream","Hair_Oil"]
+        self.Bath_Soap = ["Select Options","LUX","VIVEL","SANTOOR"]
+        self.price_LUX = 100
+        self.price_VIVEL = 60
+        self.price_SANTOOR= 50
+
+        self.Face_Cream = ["PONDS","NIVEA","HIMALYA"]
+        self.price_PONDS = 200
+        self.price_NIVEA = 300
+        self.price_HIMALYA = 400
+
+        self.Hair_Oil = ["DABUR_AMLA","PARACHUTE","BAJAJ_ALMOND_DROPS"]
+        self.price_DABUR_AMLA = 250
+        self.price_PARACHUTE = 390
+        self.price_BAJAJ_ALMOND_DROPS =600
+
+        self.SubCat_Mobiles= ['Iphone','Sumsung',"OnePlus"]
+        self.Iphone = ["IPHONE12","IPHONE12PRO", "IPHONE12PROMAX"]
+        self.price_IPHONE12 = 100000
+        self.price_IPHONE12PRO = 125000
+        self.price_IPHONE12PROMAX= 170000
+        
+        self.Samsung = ["SAMSUNGNOTE1","SAMSUNGNOTE2", "SAMSUNGNOTE3"]
+        self.price_SAMSUNGNOTE1 = 15000
+        self.price_SAMSUNGNOTE2 = 24000
+        self.price_SAMSUNGNOTE3 = 30000
+
+        self.OnePlus = ["ONEPLUSNOTE1","ONEPLUSNOTE2", "ONEPLUSNOTE3"]
+        self.price_ONEPLUSNOTE1 = 10000
+        self.price_ONEPLUSNOTE2 = 20000
+        self.price_ONEPLUSNOTE3 = 30000
+
         #Image1
         img1 = Image.open("images/1.jpg")
         img1= img1.resize((520,130),Image.LANCZOS)
@@ -64,22 +115,26 @@ class Bill_App:
         Prod_Frame.place(x=370,y=5,width =620,height =140)
 
         #Category
-        self.lbl_category = Label(Prod_Frame, text = "Select Catgory",font =("times New Roman",12,"bold"),bd=4,bg="white")
+        self.lbl_category = Label(Prod_Frame, text = "Select Category",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lbl_category.grid(row=0, column=0, stick =W, padx=5, pady=2)
-        self.Combo_category = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"),width=24, state = "readonly",)
+        self.Combo_category = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"),width=24, value = self.Category, state = "readonly")
+        self.Combo_category.current(0)
         self.Combo_category.grid(row=0,column=1,stick =W, padx=5, pady=2)
+        self.Combo_category.bind("<<ComboboxSelected>>",self.SelectCategories)
 
         #SubCategory
-        self.lbl_sub_category = Label(Prod_Frame, text = "Select Sub Catgory",font =("times New Roman",12,"bold"),bd=4,bg="white")
+        self.lbl_sub_category = Label(Prod_Frame, text = "Select Sub Category",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lbl_sub_category.grid(row=1, column=0, stick =W, padx=5, pady=2)
-        self.Combo_sub_category = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"),width =24 ,state = "readonly")
+        self.Combo_sub_category = ttk.Combobox(Prod_Frame,value = [],font =("times new Roman",10,"bold"),width =24 ,state = "readonly")
         self.Combo_sub_category.grid(row=1,column=1,stick =W, padx=5, pady=2)
+        self.Combo_sub_category.bind("<<ComboboxSelected>>",self.SelectSubCategories)
 
         #Product Name
         self.lbl_prod_name = Label(Prod_Frame, text = "Select Product",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lbl_prod_name.grid(row=2, column=0, stick =W, padx=5, pady=2)
-        self.Combo_prod_name = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"), width = 24,state = "readonly")
+        self.Combo_prod_name = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"),  width = 24,state = "readonly")
         self.Combo_prod_name.grid(row=2,column=1,stick =W, padx=5, pady=2)
+        #self.Combo_category.bind("<<ComboboxSelected>>",self.Sub_Categories)
 
         #Price
         self.lblPrice= Label(Prod_Frame,text = "Price",font =("times New Roman",12,"bold"),bd=4,bg="white")
@@ -161,6 +216,7 @@ class Bill_App:
         self.Btn_Search = Button(Search_Frame, text= "SEARCH", font =("Arial",10,"bold"),bg = "Navy Blue", fg = "grey",width=9,cursor = "hand2")
         self.Btn_Search.grid(row =0, column=2,sticky=W,padx=1, pady=1)
 
+        #MIDDLE FRAME
         Middle_Frame = Frame(Main_Frame, bd =10)
         Middle_Frame.place(x=10,y=150, width = 980, height =325)
 
@@ -176,32 +232,48 @@ class Bill_App:
         lbl_image5= Label(Middle_Frame,image= self.photoimg5)
         lbl_image5.place(x=500,y=0,width=485,height =325)
 
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
+    def SelectCategories(self,event=""):
+        if self.Combo_category.get()=="Clothing":
+            self.Combo_sub_category.config(value =self.SubCat_Clothing)
+            self.Combo_sub_category.current(0)
+            
+        if self.Combo_category.get()=="Lifestyle":
+             self.Combo_sub_category.config(value= self.SubCat_Lifestyle)
+             self.Combo_sub_category.current(0)
+            
+        if self.Combo_category.get()=="Mobiles":
+             self.Combo_sub_category.config(value= self.SubCat_Mobiles)
+             self.Combo_sub_category.current(0)
+    
+    def SelectSubCategories(self,event=""):
+        if self.Combo_sub_category.get() == "Pants":
+            self.Combo_prod_name.config(value= self.Pants)
+            self.Combo_prod_name.current(0)
+        if self.Combo_sub_category.get() == "T-shirt":
+            self.Combo_prod_name.config(value= self.Tshirt)
+            self.Combo_prod_name.current(0)
+        if self.Combo_sub_category.get() == "Shirt":
+            self.Combo_prod_name.config(value= self.Shirt)
+            self.Combo_prod_name.current(0)
+        if self.Combo_sub_category.get() == "Bath_Soap":
+            self.Combo_prod_name.config(value= self.Bath_Soap)
+            self.Combo_prod_name.current(0)   
+        if self.Combo_sub_category.get() == "Face_Cream":
+            self.Combo_prod_name.config(value= self.Face_Cream)
+            self.Combo_prod_name.current(0)   
+        if self.Combo_sub_category.get() == "Hair_Oil":
+            self.Combo_prod_name.config(value= self.Hair_Oil)
+            self.Combo_prod_name.current(0) 
+        if self.Combo_sub_category.get() == "Iphone":
+            self.Combo_prod_name.config(value= self.Iphone)
+            self.Combo_prod_name.current(0) 
+        if self.Combo_sub_category.get() == "Samsung":
+            self.Combo_prod_name.config(value= self.Samsung)
+            self.Combo_prod_name.current(0) 
+        if self.Combo_sub_category.get() == "OnePlus":
+            self.Combo_prod_name.config(value= self.OnePlus)
+            self.Combo_prod_name.current(0)
+            
 
 if __name__== '__main__':
     root=Tk()
