@@ -13,7 +13,7 @@ class Bill_App:
         self.Category = ["Select Options", "Clothing", "Lifestyle","Mobiles"]
         
         self.SubCat_Clothing = ["Pants","T-shirt","Shirt"]
-        self.Pants=["Select Options","LEVIS","AND","ZARA"]
+        self.Pants=["LEVIS","AND","ZARA"]
         self.price_Levis = 5000
         self.price_AND = 2000
         self.price_ZARA = 3000
@@ -29,7 +29,7 @@ class Bill_App:
         self.price_RICHLOOK= 750
 
         self.SubCat_Lifestyle =["Bath_Soap","Face_Cream","Hair_Oil"]
-        self.Bath_Soap = ["Select Options","LUX","VIVEL","SANTOOR"]
+        self.Bath_Soap = ["LUX","VIVEL","SANTOOR"]
         self.price_LUX = 100
         self.price_VIVEL = 60
         self.price_SANTOOR= 50
@@ -44,7 +44,7 @@ class Bill_App:
         self.price_PARACHUTE = 390
         self.price_BAJAJ_ALMOND_DROPS =600
 
-        self.SubCat_Mobiles= ['Iphone','Sumsung',"OnePlus"]
+        self.SubCat_Mobiles= ['Iphone','Samsung',"OnePlus"]
         self.Iphone = ["IPHONE12","IPHONE12PRO", "IPHONE12PROMAX"]
         self.price_IPHONE12 = 100000
         self.price_IPHONE12PRO = 125000
@@ -185,22 +185,22 @@ class Bill_App:
         Btn_Frame.place(x=320,y=0)
        
         #AddToCartButton
-        self.Btn_AddToCart = Button(Btn_Frame, text= "Add to Cart", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_AddToCart = Button(Btn_Frame, text="Add to Cart", font =("Arial",15,"bold"),bg ="Navy Blue", fg = "grey",width=15,cursor ="hand2")
         self.Btn_AddToCart.grid(row =0, column=0)
 
-        self.Btn_GenerateBill = Button(Btn_Frame, text= "Generate Bill", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_GenerateBill = Button(Btn_Frame, text="Generate Bill",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor ="hand2")
         self.Btn_GenerateBill.grid(row =0, column=1)
 
-        self.Btn_SaveBill = Button(Btn_Frame, text= "Save Bill", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_SaveBill = Button(Btn_Frame, text="Save Bill",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor ="hand2")
         self.Btn_SaveBill.grid(row =0, column=2)
 
-        self.Btn_Print = Button(Btn_Frame, text= "Print", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Print = Button(Btn_Frame, text= "Print",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor = "hand2")
         self.Btn_Print.grid(row =0, column=3)
 
-        self.Btn_Clear = Button(Btn_Frame, text= "Clear", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Clear = Button(Btn_Frame, text= "Clear",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor = "hand2")
         self.Btn_Clear.grid(row =0, column=4)
 
-        self.Btn_Exit = Button(Btn_Frame, text= "Exit", font =("Arial",15,"bold"),bg = "Navy Blue", fg = "grey",width=15,cursor = "hand2")
+        self.Btn_Exit = Button(Btn_Frame, text= "Exit",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor = "hand2")
         self.Btn_Exit.grid(row =0, column=5)
 
         #Search
