@@ -14,7 +14,7 @@ class Bill_App:
         
         self.SubCat_Clothing = ["Pants","Tshirt","Shirt"]
         self.Pants=["LEVIS","AND","ZARA"]
-        self.price_Levis = 5000
+        self.price_LEVIS = 5000
         self.price_AND = 2000
         self.price_ZARA = 3000
 
@@ -132,9 +132,9 @@ class Bill_App:
         #Product Name
         self.lbl_prod_name = Label(Prod_Frame, text = "Select Product",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lbl_prod_name.grid(row=2, column=0, stick =W, padx=5, pady=2)
-        self.Combo_prod_name = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"),  width = 24,state = "readonly")
+        self.Combo_prod_name = ttk.Combobox(Prod_Frame,value=[],font =("times new Roman",10,"bold"),  width = 24,state = "readonly")
         self.Combo_prod_name.grid(row=2,column=1,stick =W, padx=5, pady=2)
-        #self.Combo_category.bind("<<ComboboxSelected>>",self.Sub_Categories)
+        self.Combo_prod_name.bind("<<ComboboxSelected>>",self.SelectPrice)
 
         #Price
         self.lblPrice= Label(Prod_Frame,text = "Price",font =("times New Roman",12,"bold"),bd=4,bg="white")
@@ -236,12 +236,16 @@ class Bill_App:
         subcat_variable = "SubCat_"+self.Combo_category.get()
         self.Combo_sub_category.config(value =getattr(self, subcat_variable))
         self.Combo_sub_category.current(0)
-      
     
     def SelectSubCategories(self,event=""):
         product_variable = self.Combo_sub_category.get()
         self.Combo_prod_name.config(value =getattr(self, product_variable))
         self.Combo_prod_name.current(0)
+    
+    def SelectPrice(self,event=""):
+        product_price = "price_"+self.Combo_prod_name.get()
+        self.ComboPrice.config(value = getattr(self,product_price) )
+        self.ComboPrice.current(0)
 
 if __name__== '__main__':
     root=Tk()
