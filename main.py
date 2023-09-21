@@ -24,9 +24,7 @@ class Bill_App:
         self.sub_total = StringVar()
         self.tax_inpur =StringVar()
         self.total_amount = StringVar()
-
-
-
+        #####################################################################
 
         #Product Categories List
         self.Category = ["Select Options", "Clothing", "Lifestyle","Mobiles"]
@@ -114,19 +112,19 @@ class Bill_App:
         #Mobile
         self.lbl_cus_mob = Label(Cust_Frame, text = "Mobile No.",font =("times New Roman",12,"bold"),bg="white")
         self.lbl_cus_mob.grid(row=0, column=0, stick =W, padx=5, pady=2)
-        self.entry_cus_mob= ttk.Entry(Cust_Frame,font =("times New Roman",10,"bold"))
+        self.entry_cus_mob= ttk.Entry(Cust_Frame,textvariable=self.cus_mob,font =("times New Roman",10,"bold"))
         self.entry_cus_mob.grid(row =0, column =1)
 
         #Customer Name
         self.lbl_cus_name = Label(Cust_Frame, text = "Customer Name",font =("times New Roman",12,"bold"),bg="white")
         self.lbl_cus_name.grid(row=1, column=0, stick =W, padx=5, pady=2)
-        self.entry_mob= ttk.Entry(Cust_Frame,font =("times New Roman",10,"bold"))
-        self.entry_mob.grid(row =1, column =1)
+        self.entry_cus_name= ttk.Entry(Cust_Frame,textvariable=self.cus_name,font =("times New Roman",10,"bold"))
+        self.entry_cus_name.grid(row =1, column =1)
 
         #Email
         self.lbl_cus_email = Label(Cust_Frame, text = "Email",font =("times New Roman",12,"bold"),bg="white")
         self.lbl_cus_email.grid(row=2, column=0, stick =W, padx=5, pady=2)
-        self.entry_cus_email= ttk.Entry(Cust_Frame,font =("times New Roman",10,"bold"))
+        self.entry_cus_email= ttk.Entry(Cust_Frame,textvariable=self.cus_email,font =("times New Roman",10,"bold"))
         self.entry_cus_email.grid(row =2, column =1)
 
         #Product Label Frame
@@ -151,20 +149,20 @@ class Bill_App:
         #Product Name
         self.lbl_prod_name = Label(Prod_Frame, text = "Select Product",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lbl_prod_name.grid(row=2, column=0, stick =W, padx=5, pady=2)
-        self.Combo_prod_name = ttk.Combobox(Prod_Frame,value=[],font =("times new Roman",10,"bold"),  width = 24,state = "readonly")
+        self.Combo_prod_name = ttk.Combobox(Prod_Frame,textvariable=self.prod_name,font =("times new Roman",10,"bold"),  width = 24,state = "readonly")
         self.Combo_prod_name.grid(row=2,column=1,stick =W, padx=5, pady=2)
         self.Combo_prod_name.bind("<<ComboboxSelected>>",self.SelectPrice)
 
         #Price
         self.lblPrice= Label(Prod_Frame,text = "Price",font =("times New Roman",12,"bold"),bd=4,bg="white")
         self.lblPrice.grid(row=0, column=2, stick =W, padx=5, pady=2)
-        self.ComboPrice = ttk.Combobox(Prod_Frame,font =("times new Roman",10,"bold"), width = 24,state = "readonly")
+        self.ComboPrice = ttk.Combobox(Prod_Frame,textvariable= self.price,font =("times new Roman",10,"bold"), width = 24,state = "readonly")
         self.ComboPrice.grid(row=0,column=3,stick =W, padx=5, pady=2)
 
         #Quantity
         self.lblqty= Label(Prod_Frame,text= "Qty", font = ("times new Roman",12,"bold"),bd = 4, bg = "white")
         self.lblqty.grid(row=1, column=2, stick =W, padx=5, pady=2)
-        self.entry_qty= ttk.Entry(Prod_Frame,font =("times New Roman",10,"bold"), width =26)
+        self.entry_qty= ttk.Entry(Prod_Frame,textvariable= self.qty,font =("times New Roman",10,"bold"), width =26)
         self.entry_qty.grid(row =1, column =3, stick = W, padx=5 , pady=2)
  
         #Right Frame Bill Area
@@ -222,6 +220,8 @@ class Bill_App:
         self.Btn_Exit = Button(Btn_Frame, text= "Exit",font =("Arial",15,"bold"),bg ="Navy Blue", fg ="grey",width=15,cursor = "hand2")
         self.Btn_Exit.grid(row =0, column=5)
 
+        self.welcome()
+
         #Search
         Search_Frame = Frame(Main_Frame,bd =2 ,bg = "white")
         Search_Frame.place(x =1000,y=10, width = 500, height = 40)
@@ -229,7 +229,7 @@ class Bill_App:
         self.lbl_Bill = Label(Search_Frame,font =("Arial",10,"bold"), text= "BILL NUMBER", bg = "Navy Blue", fg="Grey")
         self.lbl_Bill.grid(row=0,column=0,sticky=W,padx=1)
 
-        self.txt_BillEntrySearch= ttk.Entry(Search_Frame,font =("Arial",10,"bold"), width=24)
+        self.txt_BillEntrySearch= ttk.Entry(Search_Frame,textvariable=self.search_bill,font =("Arial",10,"bold"), width=24)
         self.txt_BillEntrySearch.grid(row=0,column=1,sticky=W,padx=1)
 
         self.Btn_Search = Button(Search_Frame, text= "SEARCH", font =("Arial",10,"bold"),bg = "Navy Blue", fg = "grey",width=9,cursor = "hand2")
@@ -266,6 +266,22 @@ class Bill_App:
         self.ComboPrice.config(value = getattr(self,product_price) )
         self.ComboPrice.current(0)
         self.qty.set(1)
+
+    def welcome(self):
+        self.textarea.delete(1.0,END)
+        self.textarea.insert(END,"\t WELCOME TO JK INTERNATIONAL\t")
+        self.textarea.insert(END,f"\n Bill No: {self.Bill_num.get()}")
+        self.textarea.insert(END,f"\n Customer Name: {self.cus_name.get()}")
+        self.textarea.insert(END,f"\n Phone Num: {self.cus_mob.get()}")
+        self.textarea.insert(END,f"\n Email ID: {self.cus_email.get()}")
+        self.textarea.insert(END,"\n==================================================")
+        self.textarea.insert(END,f"\n PRODUCTS \t\t\t QTY \t\t\t PRICE")
+        self.textarea.insert(END,"\n==================================================")
+
+
+
+
+
 
 if __name__== '__main__':
     root=Tk()
