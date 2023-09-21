@@ -1,6 +1,7 @@
 from tkinter import *
 from tkinter import ttk
 from PIL import Image,ImageTk
+import random
 
 
 class Bill_App:
@@ -8,6 +9,24 @@ class Bill_App:
         self.root= root
         self.root.geometry("1530x780+0+0")
         self.root.title("Billing Software")
+
+        ##################################################################
+        self.cus_name = StringVar()
+        self.cus_mob = StringVar()
+        self.Bill_num = StringVar()
+        z = random.randint(1000,9999)
+        self.Bill_num.set(2)
+        self.cus_email=StringVar()
+        self.search_bill = StringVar()
+        self.prod_name = StringVar()
+        self.price = IntVar()
+        self.qty= IntVar()
+        self.sub_total = StringVar()
+        self.tax_inpur =StringVar()
+        self.total_amount = StringVar()
+
+
+
 
         #Product Categories List
         self.Category = ["Select Options", "Clothing", "Lifestyle","Mobiles"]
@@ -93,10 +112,10 @@ class Bill_App:
         Cust_Frame.place(x=10,y=5,width =350,height =140)
         
         #Mobile
-        self.lbl_mob = Label(Cust_Frame, text = "Mobile No.",font =("times New Roman",12,"bold"),bg="white")
-        self.lbl_mob.grid(row=0, column=0, stick =W, padx=5, pady=2)
-        self.entry_mob= ttk.Entry(Cust_Frame,font =("times New Roman",10,"bold"))
-        self.entry_mob.grid(row =0, column =1)
+        self.lbl_cus_mob = Label(Cust_Frame, text = "Mobile No.",font =("times New Roman",12,"bold"),bg="white")
+        self.lbl_cus_mob.grid(row=0, column=0, stick =W, padx=5, pady=2)
+        self.entry_cus_mob= ttk.Entry(Cust_Frame,font =("times New Roman",10,"bold"))
+        self.entry_cus_mob.grid(row =0, column =1)
 
         #Customer Name
         self.lbl_cus_name = Label(Cust_Frame, text = "Customer Name",font =("times New Roman",12,"bold"),bg="white")
@@ -246,6 +265,7 @@ class Bill_App:
         product_price = "price_"+self.Combo_prod_name.get()
         self.ComboPrice.config(value = getattr(self,product_price) )
         self.ComboPrice.current(0)
+        self.qty.set(1)
 
 if __name__== '__main__':
     root=Tk()
