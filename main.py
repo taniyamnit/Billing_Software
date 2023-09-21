@@ -12,7 +12,7 @@ class Bill_App:
         #Product Categories List
         self.Category = ["Select Options", "Clothing", "Lifestyle","Mobiles"]
         
-        self.SubCat_Clothing = ["Pants","T-shirt","Shirt"]
+        self.SubCat_Clothing = ["Pants","Tshirt","Shirt"]
         self.Pants=["LEVIS","AND","ZARA"]
         self.price_Levis = 5000
         self.price_AND = 2000
@@ -233,47 +233,15 @@ class Bill_App:
         lbl_image5.place(x=500,y=0,width=485,height =325)
 
     def SelectCategories(self,event=""):
-        if self.Combo_category.get()=="Clothing":
-            self.Combo_sub_category.config(value =self.SubCat_Clothing)
-            self.Combo_sub_category.current(0)
-            
-        if self.Combo_category.get()=="Lifestyle":
-             self.Combo_sub_category.config(value= self.SubCat_Lifestyle)
-             self.Combo_sub_category.current(0)
-            
-        if self.Combo_category.get()=="Mobiles":
-             self.Combo_sub_category.config(value= self.SubCat_Mobiles)
-             self.Combo_sub_category.current(0)
+        subcat_variable = "SubCat_"+self.Combo_category.get()
+        self.Combo_sub_category.config(value =getattr(self, subcat_variable))
+        self.Combo_sub_category.current(0)
+      
     
     def SelectSubCategories(self,event=""):
-        if self.Combo_sub_category.get() == "Pants":
-            self.Combo_prod_name.config(value= self.Pants)
-            self.Combo_prod_name.current(0)
-        if self.Combo_sub_category.get() == "T-shirt":
-            self.Combo_prod_name.config(value= self.Tshirt)
-            self.Combo_prod_name.current(0)
-        if self.Combo_sub_category.get() == "Shirt":
-            self.Combo_prod_name.config(value= self.Shirt)
-            self.Combo_prod_name.current(0)
-        if self.Combo_sub_category.get() == "Bath_Soap":
-            self.Combo_prod_name.config(value= self.Bath_Soap)
-            self.Combo_prod_name.current(0)   
-        if self.Combo_sub_category.get() == "Face_Cream":
-            self.Combo_prod_name.config(value= self.Face_Cream)
-            self.Combo_prod_name.current(0)   
-        if self.Combo_sub_category.get() == "Hair_Oil":
-            self.Combo_prod_name.config(value= self.Hair_Oil)
-            self.Combo_prod_name.current(0) 
-        if self.Combo_sub_category.get() == "Iphone":
-            self.Combo_prod_name.config(value= self.Iphone)
-            self.Combo_prod_name.current(0) 
-        if self.Combo_sub_category.get() == "Samsung":
-            self.Combo_prod_name.config(value= self.Samsung)
-            self.Combo_prod_name.current(0) 
-        if self.Combo_sub_category.get() == "OnePlus":
-            self.Combo_prod_name.config(value= self.OnePlus)
-            self.Combo_prod_name.current(0)
-            
+        product_variable = self.Combo_sub_category.get()
+        self.Combo_prod_name.config(value =getattr(self, product_variable))
+        self.Combo_prod_name.current(0)
 
 if __name__== '__main__':
     root=Tk()
