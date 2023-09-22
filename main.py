@@ -106,7 +106,7 @@ class Bill_App:
         Main_Frame.place(x=0,y=175,width=1530,height=620)
 
         #Customer Label Frame
-        Cust_Frame= LabelFrame(Main_Frame,text="Customer",font =("times New Roman",12,"bold"),bg="white",fg ="red")
+        Cust_Frame= LabelFrame(Main_Frame,text="CUSTOMER",font =("times New Roman",12,"bold"),bg="white",fg ="red")
         Cust_Frame.place(x=10,y=5,width =350,height =140)
         
         #Mobile
@@ -128,7 +128,7 @@ class Bill_App:
         self.entry_cus_email.grid(row =2, column =1)
 
         #Product Label Frame
-        Prod_Frame= LabelFrame(Main_Frame,text="Product",font =("times new Roman",12,"bold"),bg="white",fg ="red")
+        Prod_Frame= LabelFrame(Main_Frame,text="PRODUCT",font =("times new Roman",12,"bold"),bg="white",fg ="red")
         Prod_Frame.place(x=370,y=5,width =620,height =140)
 
         #Category
@@ -269,7 +269,7 @@ class Bill_App:
 
     def welcome(self):
         self.textarea.delete(1.0,END)
-        self.textarea.insert(END,"\t WELCOME TO JK INTERNATIONAL\t")
+        self.textarea.insert(END,"\t WELCOME TO JK INTERNATIONAL")
         self.textarea.insert(END,f"\n Bill No: {self.Bill_num.get()}")
         self.textarea.insert(END,f"\n Customer Name: {self.cus_name.get()}")
         self.textarea.insert(END,f"\n Phone Num: {self.cus_mob.get()}")
